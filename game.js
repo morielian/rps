@@ -1,40 +1,43 @@
-const choices = ['rock','paper', 'scissors'];
+const choices = document.querySelectorAll('img');
+const score = document.getElementById('score');
+const result = document.getElementById('result');
+const restart = document.getElementById('restart');
+const modal = document.querySelector('.modal');
+const scoreboard = {
+    player: 0,
+    computer: 0
+};
+
+function play(e){
+    const playerChoice = e.target.id;
+    const computerChoice = getComputerChoice();
+    const gameWinner = decideWinner(playerChoice, computerChoice)
+    console.log(playerChoice,computerChoice,gameWinner)
+};
 
 function getComputerChoice(){
-  return choices[Math.floor(Math.random() * choices.length)]
+    const random = Math.random();
+    if(random < 0.34 ){
+        return 'rock'
+    } else if (random <= 0.67){
+        return 'paper'
+    } else {
+        return 'scissors' 
+    }
+}
+
+function decideWinner(player, computer){
+    if (player === computer){
+        return ('Tie')
+      } else if ( computer === 'rock' && player === 'scissors' ){
+        return ('Computer')
+      } else if (computer === 'paper' && player === 'rock'){
+        return ('Computer')
+      } else if ( computer === 'scissors' && player === 'paper'){
+        return ('Computer')
+      } else {
+        return ('Player')
+      }
 };
 
-function playRound(playerSelection, computerSelection){
-  playerSelection = prompt('Choose one : rock, paper, scissors');
-  computerSelection = getComputerChoice();
-  if (playerSelection.toLowerCase() === computerSelection){
-    return ('Tie Game!')
-  } else if ( computerSelection === 'rock' && playerSelection.toLowerCase() === 'scissors' ){
-    return ('Computer wins!')
-  } else if (computerSelection === 'paper' && playerSelection.toLowerCase() === 'rock'){
-    return ('Computer wins!')
-  } else if ( computerSelection === 'scissors' && playerSelection.toLowerCase() === 'paper'){
-    return ('Computer wins!')
-  } else {
-    return ('Player wins!')
-  }
-};
-
-function game() {
-  let playerCounter = 0;
-  let computerCounter = 0;
- while (playerCounter < 5 && computerCounter < 5) {
-  if (playRound() === 'Player wins!'){
-    playerCounter++;
-    console.log('Player won this round!')
-  } else if (playRound() === 'Computer wins!'){
-    computerCounter++;
-    console.log('Computer won this round!')
-  } else{
-    console.log('Tie round!')
-  }
- }
- console.log(`The final score is Player: ${playerCounter} Computer: ${computerCounter} `)
-};
-
-game()
+choices.forEach(choice => choice.addEventListener('click', play))

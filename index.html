@@ -1,12 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="modal.css">
+    <script src="game.js" defer></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rock Paper Scissors</title>
 </head>
 <body>
-    
+    <div class="container">
+        <header class="header">
+        <h1>Rock Paper Scissors</h1>
+        <button id="restart" class="restart-btn">Restart</button>
+        <div id="score" class="score">
+            <p>Player: 0</p>
+            <p>Computer: 0</p>
+        </div>
+        </header>
+        <h2>Make your selection</h2>
+        <div class="choices">
+            <img id="rock" src="./images/rock.png" alt="rock">
+            <img id="paper" src="./images/paper.png" alt="paper">
+            <img id="scissors" src="./images/scissors.png" alt="scissors">
+        </div>
+        <div class="modal">
+            <div id="result" class="modal-content">
+                <h1>You Win!</h1>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
