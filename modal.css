@@ -1,1 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+.modal-content {
+    font-family: 'Nanum Gothic',  sans-serif;
+}
+
+.modal {
+    display: none;
+}

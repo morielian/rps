@@ -9,15 +9,16 @@ const scoreboard = {
 };
 
 function play(e){
+    restart.style.display = 'inline-block'
     const playerChoice = e.target.id;
     const computerChoice = getComputerChoice();
     const gameWinner = decideWinner(playerChoice, computerChoice)
-    console.log(playerChoice,computerChoice,gameWinner)
+    showWinner(gameWinner, computerChoice);
 };
 
 function getComputerChoice(){
     const random = Math.random();
-    if(random < 0.34 ){
+    if(random <= 0.34 ){
         return 'rock'
     } else if (random <= 0.67){
         return 'paper'
@@ -40,4 +41,37 @@ function decideWinner(player, computer){
       }
 };
 
+function showWinner(winner, computerChoice){
+    if ( winner === 'Player') {
+        modal.style.display = 'inline-block'
+        scoreboard.player++;
+        result.innerHTML = `
+        <h1> You Win! Computer chose ${computerChoice}</h1>`
+    } else if (winner === 'Computer'){
+      modal.style.display = 'inline-block'
+        scoreboard.computer++;
+        result.innerHTML = `
+        <h1> You Lose! Computer chose ${computerChoice}</h1>`
+    } else {
+      modal.style.display = 'inline-block'
+        result.innerHTML = `
+        <h1> Tie game! Computer chose ${computerChoice}</h1>`
+    }
+    score.innerHTML = `<p> Player: ${scoreboard.player} </p>
+                       <p> Computer: ${scoreboard.computer} </p>`
+}
+
+function restartGame(){
+  scoreboard.player = 0
+  scoreboard.computer = 0
+  score.innerHTML = `
+  <p> Player: 0 </p>
+  <p> Computer: 0 </p>
+  `
+  modal.style.display = "none"
+  restart.style.display = "none"
+}
+
+
+restart.addEventListener('click', restartGame)
 choices.forEach(choice => choice.addEventListener('click', play))
